@@ -19,14 +19,14 @@ export default function MyRouterProvider() {
                     const Page = <Layout>{route.element}</Layout>;
                     return <Route exact key={index} path={route.path} element={Page} />;
                 })}
-                <Route
+                {/* <Route
                     path="*"
                     element={
                         <DefaultLayout>
                             <NotFoundPage />
                         </DefaultLayout>
                     }
-                />
+                /> */}
             </Routes>
         </BrowserRouter>
     );
