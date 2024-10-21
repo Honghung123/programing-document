@@ -28,6 +28,9 @@
         font-family: "Courier New", Courier, monospace; /* Monospace font for code */
         color: #d14; /* Code color */
     }
+    & * {
+        cursor: pointer;
+    }
 }
 
 .markdown-heading,

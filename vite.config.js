@@ -11,7 +11,6 @@ export default defineConfig({
         // include: /src\/.*\.[tj]sx?$/,
         exclude: [],
     },
-    // assetsInclude: ["**/*.md"],
     plugins: [
         {
             name: "load-js-files-as-jsx",
