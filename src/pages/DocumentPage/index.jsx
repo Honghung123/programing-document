@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import TagList from "../../components/TagList";
-import { stringToArray, mdToHtmlWithConverter } from "../../utils/StringUtility";
 import "./index.css";
-// import javascriptMD, { attributes } from "../../assets/MDfiles/javascript.md";
+import { documentFiles } from "./documentFiles";
+import HeadToTop from "../../components/HeadToTop";
 
 const resolveFile = (currentDocName, files) => {
-    if (!currentDocName || !currentDocName.length) {
-        return files[0];
+    let targetFile = null;
+    if (currentDocName && currentDocName.length > 0) {
+        targetFile = files.find((file) => file.name === currentDocName);
     }
-    const targetFile = files.find((file) => file.name === currentDocName);
+    if (targetFile) return targetFile;
+    const lastDocName = localStorage.getItem("docName");
+    if (lastDocName && lastDocName.length > 0) {
+        targetFile = files.find((file) => file.name === lastDocName);
+    }
     return targetFile || files[0];
 };
-const mdFolderPath = "../../assets/MDfiles";
-const documentFiles = stringToArray(import.meta.env.VITE_DOCUMENT_FILES).map((f) => {
-    const [name, extension] = f.split(".");
-    return {
-        name,
-        extension,
-        fullName: `${name}.${extension}`,
-    };
-});
 
 export default function DocumentPage() {
     const [searchParams] = useSearchParams();
@@ -28,26 +24,18 @@ export default function DocumentPage() {
     const [docFile, setDocFile] = useState(currentDocFile);
     const [fileContent, setFileContent] = useState("");
     useEffect(() => {
-        const filePath = `${mdFolderPath}/${docFile.fullName}`;
-        async function fetchData(path) {
-            try {
-                const { default: javascriptMD, attributes } = await import(path);
-                // const htmlContent = await mdToHtmlWithConverter(javascriptMD);
-                setFileContent(javascriptMD);
-            } catch (err) {
-                console.log(err);
-            }
-        }
-        fetchData(filePath);
+        setFileContent(docFile.content);
     }, [docFile]);
 
     const handleClick = (file) => {
+        localStorage.setItem("docName", file.name);
         setDocFile({ ...file });
     };
+
     return (
-        <div className="container m-auto">
+        <div className="container m-auto p-6 scroll-smooth">
             <div className="p-2 mx-12">
-                <h1 className="text-3xl font-bold text-center py-4">My Document</h1>
+                <h1 className="text-3xl font-bold text-center pb-2">My Document</h1>
                 <TagList fileList={documentFiles} handleClick={handleClick} />
             </div>
             <hr />
@@ -59,6 +47,9 @@ export default function DocumentPage() {
                     <div dangerouslySetInnerHTML={{ __html: fileContent }} />
                 </div>
             </div>
+            <HeadToTop style={{ position: "fixed", bottom: "10px", right: "10px" }}>
+                <div className="inline-flex items-center border border-1 rounded-full bg-white cursor-pointer">Top</div>
+            </HeadToTop>
         </div>
     );
 }

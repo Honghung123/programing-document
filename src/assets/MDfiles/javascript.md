@@ -39,7 +39,7 @@ let t1 = car.wheel?.size || defaultValue;
 ### Number
 
 ```javascript
-isNaN(2/0); // true
+isNaN(2 / 0); // true
 Number.isInteger(24); // true
 Number.isInteger(2.4); // false
 const num = 18.532;
@@ -47,7 +47,7 @@ const fix1 = num.toFixed(0); // fix1 = "19"
 const fix2 = num.toFixed(2); // fix2 = "18.53"
 const fix3 = num.toPrecision(3); // fix3 = "18.5"
 const num1 = Number("12"); // num1 = 12;
-const num2 = "parseInt(" 12sdfd"); // num2 = 12;
+const num2 = parseInt(" 12sdfd"); // num2 = 12;
 const num3 = Number(" 123 "); // 123
 ```
 
@@ -115,7 +115,7 @@ const a = String(123); // "123"
 const arr1 = ["Orange", "Banana", "Apple"];
 const arr2 = []; arr2[0] = "New element";
 arr1.push("Pear"); arr2[arr2.length] = "Lemon";
-arr2.unshift("First'); // Insert to the beginning of the array
+arr2.unshift("First"); // Insert to the beginning of the array
 arr2.splice(1,0, "Guava", "Pineapple"); // Insert two elements at index 1, remove 0 element at index 1
 // Remove element
 const first = arr2.shift(); // Remove the first element

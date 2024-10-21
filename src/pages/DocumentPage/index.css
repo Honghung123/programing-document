@@ -21,15 +21,85 @@
         background-color: #f0f0f0; /* Highlight on hover */
     }
 
-    & code {
-        background-color: #eef; /* Light background for code */
-        border-radius: 3px; /* Rounded corners for code */
-        padding: 2px 4px; /* Padding around code */
-        font-family: "Courier New", Courier, monospace; /* Monospace font for code */
-        color: #d14; /* Code color */
-    }
     & * {
         cursor: pointer;
+    }
+
+    & pre {
+        background-color: #050505; /* Dark background for contrast */
+        color: #ffffff; /* Light text color */
+        padding: 20px; /* Spacing around the text */
+        border-radius: 8px; /* Rounded corners */
+        overflow: auto; /* Scroll if content overflows */
+        font-family: "Fira Code", monospace; /* Monospace font for code */
+        font-size: 14px; /* Font size */
+        line-height: 1.5; /* Improved line height for readability */
+    }
+
+    & code {
+        background: none; /* Remove background from inline code */
+        padding: 0; /* No padding for inline code */
+    }
+
+    & .hljs-keyword {
+        background-image: linear-gradient(to bottom, #fcf9bd, #ff2f78);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text; /* CSS for keywords */
+    }
+
+    & .hljs-attr {
+        color: #e06c75; /* Red for attributes */
+    }
+
+    & .hljs-property {
+        background-image: linear-gradient(to bottom, #fcf9bd, #2ffffc);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text; /* CSS for properties */
+    }
+
+    & .hljs-literal {
+        background-image: linear-gradient(to bottom, #fcffdf, #a2ff00);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+
+    & .hljs-number {
+        background-image: linear-gradient(to bottom, #ecff17, #ffaf1b);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+
+    & .hljs-string {
+        background-image: linear-gradient(to bottom, #ffff04, #ff2bea);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        /* Green for strings */
+    }
+
+    & .hljs-comment {
+        color: #96ff69e8; /* Grey for comments */
+        font-style: italic; /* Italics for comments */
+    }
+
+    & .hljs-title.function_ {
+        color: transparent;
+        background-image: linear-gradient(to bottom, #efc5ff, #01fff2);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+    }
+
+    & .hljs-title.class_ {
+        color: transparent;
+        background-image: linear-gradient(to bottom, #efc5ff, #ffe101);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
     }
 }
 
@@ -44,49 +114,33 @@
     -webkit-text-fill-color: transparent;
 }
 
-/* Github CSS */
-.highlight {
-    background-color: #fff; /* Light gray background */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px; /* Spacing inside the box */
-    overflow: auto; /* Enable scrolling if content overflows */
-    font-family: "Courier New", Courier, monospace; /* Monospace font for code */
-    line-height: 1.5; /* Line spacing */
+.hljs {
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
 }
 
-.highlight pre {
-    margin: 0; /* Remove margin from pre */
+/* Responsive */
+
+@media only screen and (max-width: 1200px) {
+    .document-content pre {
+        zoom: 0.95;
+    }
 }
 
-.highlight span {
-    color: #000000; /* Default text color */
+@media only screen and (max-width: 960px) {
+    .document-content pre {
+        zoom: 0.85;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .document-content pre {
+        zoom: 0.8;
+    }
 }
 
-.pl-k {
-    color: rgb(255, 56, 105) !important; /* Keyword color */
-}
-
-.pl-s1 {
-    color: #02eb1a !important; /* String color */
-}
-
-.pl-c1 {
-    color: #982aff !important; /* Number and variable color */
-}
-
-.pl-c {
-    color: #034e00b3 !important; /* Comment color */
-}
-
-.pl-kos {
-    color: #000000ca !important; /* Object color */
-}
-
-.pl-s {
-    color: #02eb1a !important; /* Special string color */
-}
-
-.pl-en {
-    color: #a48b00b3 !important;
+@media only screen and (max-width: 600px) {
+    .document-content pre {
+        zoom: 0.75;
+    }
 }
