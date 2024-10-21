@@ -28,14 +28,18 @@ export default function DocumentPage() {
     const [fileContent, setFileContent] = useState("");
     useEffect(() => {
         const filePath = `${mdFolderPath}/${docFile.fullName}`;
-        import(filePath)
-            .then((res) => {
-                fetch(res.default)
-                    .then((res) => res.text())
-                    .then(async (res) => setFileContent(await mdToHtmlWithConverter(res)))
-                    .catch((err) => console.log(err));
-            })
-            .catch((err) => console.log(err));
+        async function fetchData(path) {
+            try {
+                const module = await import(path);
+                const response = await fetch(module.default);
+                const text = await response.text();
+                const htmlContent = await mdToHtmlWithConverter(text);
+                setFileContent(htmlContent);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchData(filePath);
     }, [docFile]);
 
     const handleClick = (file) => {
