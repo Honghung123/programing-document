@@ -1,0 +1,89 @@
+.document-content {
+    & ul,
+    ol {
+        padding: revert-layer;
+        list-style-type: disc !important;
+    }
+    & h1 {
+        font-size: 24px;
+    }
+    li {
+        padding: 2px; /* Spacing for each list item */
+        border-bottom: 1px solid #eee; /* Light bottom border */
+        transition: background-color 0.3s; /* Smooth background transition */
+    }
+
+    & li:last-child {
+        border-bottom: none; /* Remove border from the last item */
+    }
+
+    & li:hover {
+        background-color: #f0f0f0; /* Highlight on hover */
+    }
+
+    & code {
+        background-color: #eef; /* Light background for code */
+        border-radius: 3px; /* Rounded corners for code */
+        padding: 2px 4px; /* Padding around code */
+        font-family: "Courier New", Courier, monospace; /* Monospace font for code */
+        color: #d14; /* Code color */
+    }
+}
+
+.markdown-heading,
+.heading-element {
+    padding: 10px 0;
+    font-size: 30px !important;
+    font-weight: 500;
+    /* Text gradient from violet to lime */
+    background: -webkit-linear-gradient(90deg, #14fcaf, #8819ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Github CSS */
+.highlight {
+    background-color: #fff; /* Light gray background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Spacing inside the box */
+    overflow: auto; /* Enable scrolling if content overflows */
+    font-family: "Courier New", Courier, monospace; /* Monospace font for code */
+    line-height: 1.5; /* Line spacing */
+}
+
+.highlight pre {
+    margin: 0; /* Remove margin from pre */
+}
+
+.highlight span {
+    color: #000000; /* Default text color */
+}
+
+.pl-k {
+    color: rgb(255, 56, 105) !important; /* Keyword color */
+}
+
+.pl-s1 {
+    color: #02eb1a !important; /* String color */
+}
+
+.pl-c1 {
+    color: #982aff !important; /* Number and variable color */
+}
+
+.pl-c {
+    color: #034e00b3 !important; /* Comment color */
+}
+
+.pl-kos {
+    color: #000000ca !important; /* Object color */
+}
+
+.pl-s {
+    color: #02eb1a !important; /* Special string color */
+}
+
+.pl-en {
+    color: #a48b00b3 !important;
+}
