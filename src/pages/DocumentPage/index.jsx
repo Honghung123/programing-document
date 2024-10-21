@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import TagList from "../../components/TagList";
 import { stringToArray, mdToHtmlWithConverter } from "../../utils/StringUtility";
 import "./index.css";
+import javascriptMD, { attributes } from "../../assets/MDfiles/javascript.md";
 
 const resolveFile = (currentDocName, files) => {
     if (!currentDocName || !currentDocName.length) {
@@ -39,7 +40,7 @@ export default function DocumentPage() {
                 console.log(err);
             }
         }
-        fetchData(filePath);
+        // fetchData(filePath);
     }, [docFile]);
 
     const handleClick = (file) => {
@@ -57,7 +58,7 @@ export default function DocumentPage() {
                     {docFile.name}
                 </p>
                 <div className="wrapper document-content py-2">
-                    <div dangerouslySetInnerHTML={{ __html: fileContent }} />
+                    <div dangerouslySetInnerHTML={{ __html: javascriptMD }} />
                 </div>
             </div>
         </div>
