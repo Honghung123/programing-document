@@ -16,7 +16,7 @@ export default function HomePage() {
 
                     <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
                         <Link
-                            to="/documents"
+                            to="/"
                             className="px-2 py-1 sm:px-4 sm:py-2 xl:px-8 xl:py-4 text-md sm:text-lg font-medium text-center text-white bg-indigo-500 hover:bg-indigo-600 rounded-md "
                         >
                             Document
