@@ -59,7 +59,8 @@ JOIN Users ON Orders.user_id = Users.id;
 
 #### **Khái niệm**
 
--   **NoSQL** là cơ sở dữ liệu **phi quan hệ**, linh hoạt về cấu trúc, phù hợp với dữ liệu phi cấu trúc (unstructured) hoặc bán cấu trúc (semi-structured).
+-   **NoSQL** là cơ sở dữ liệu **phi quan hệ**, linh hoạt về cấu trúc, phù hợp với dữ liệu phi cấu trúc
+-   Các hệ thống NoSQL phổ biến: MongoDB, Cassandra, Redis, và Couchbase.
 
 #### **Đặc điểm**
 
@@ -72,8 +73,8 @@ JOIN Users ON Orders.user_id = Users.id;
     - **Eventually Consistent**: Đảm bảo tính nhất quán sau một khoảng thời gian.
 3. **Horizontal Scaling**:
     - Mở rộng bằng cách thêm node (phân tán dữ liệu trên nhiều máy chủ).
-4. **Không hỗ trợ JOIN**:
-    - Thiết kế denormalized để tối ưu tốc độ đọc/ghi.
+4. **Hiệu suất cao. Không hỗ trợ JOIN**:
+    - Thiết kế denormalized để tối ưu cho các tác vụ đọc/ghi nhanh và xử lý dữ liệu lớn.
 
 #### **Các loại NoSQL**
 
@@ -137,11 +138,11 @@ Nhiều hệ thống hiện đại sử dụng cả hai loại để tận dụn
 -   **NoSQL** linh hoạt, hiệu suất cao, phù hợp cho big data và hệ thống phân tán.
 -   Lựa chọn phụ thuộc vào yêu cầu nghiệp vụ, loại dữ liệu và khả năng mở rộng.
 
-## INDEX
+# INDEX
 
 ### **1. Khái Niệm**
 
-    **Index** là cấu trúc dữ liệu giúp tăng tốc độ truy vấn dữ liệu trong cơ sở dữ liệu (CSDL). Nó hoạt động giống như "mục lục" trong sách, cho phép hệ thống tìm kiếm dữ liệu nhanh chóng mà không cần quét toàn bộ bảng.
+> **Index** là cấu trúc dữ liệu giúp tăng tốc độ truy vấn dữ liệu trong cơ sở dữ liệu (CSDL). Nó hoạt động giống như "mục lục" trong sách, cho phép hệ thống tìm kiếm dữ liệu nhanh chóng mà không cần quét toàn bộ bảng.
 
 -   **Mục đích**: Giảm thời gian truy vấn, đặc biệt với các bảng lớn.
 -   **Cơ chế**: Index lưu trữ giá trị của một hoặc nhiều cột và con trỏ đến vị trí dữ liệu thực tế trên đĩa.

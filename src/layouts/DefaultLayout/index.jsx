@@ -6,9 +6,9 @@ export default function DefaultLayout({ children }) {
     const darkMode = false;
     return (
         <div className={darkMode ? "dark" : ""}>
-            <Header></Header>
+            {/* <Header></Header> */}
             {children}
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </div>
     );
 }

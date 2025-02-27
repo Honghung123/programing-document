@@ -33,9 +33,9 @@ export default function DocumentPage() {
     };
 
     return (
-        <div className="container m-auto p-6 scroll-smooth">
-            <div className="p-2 mx-12">
-                <h1 className="text-3xl font-bold text-center pb-2">My Document</h1>
+        <div className="container m-auto px-6 py-2 scroll-smooth">
+            <div className="p-2 mx-4 md:mx-12">
+                {/* <h1 className="text-3xl font-bold text-center pb-2">My Document</h1> */}
                 <TagList fileList={documentFiles} handleClick={handleClick} />
             </div>
             <hr />
@@ -47,8 +47,8 @@ export default function DocumentPage() {
                     <div dangerouslySetInnerHTML={{ __html: fileContent }} />
                 </div>
             </div>
-            <HeadToTop style={{ position: "fixed", bottom: "10px", right: "10px" }}>
-                <div className="inline-flex items-center border border-1 rounded-full bg-white cursor-pointer">Top</div>
+            <HeadToTop className="fixed bottom-4 right-4 border rounded-full border w-10 h-10 bg-gray-500 flex justify-center items-center bg-opacity-30 cursor-pointer hover:bg-opacity-100">
+                <div className="text-white">Top</div>
             </HeadToTop>
         </div>
     );

@@ -130,7 +130,6 @@
             System.out.println("Printing...");
         }
     }
-
     class Circle extends Shape implements Drawable {
         @Override
         void draw() {
@@ -139,7 +138,7 @@
     }
     ```
 
-    ** So sánh Abstract class với Interface**
+    **So sánh Abstract class với Interface**
 
     -   `Abstract Class`: tập trung vào chia sẻ code và trạng thái chung.
         -   Khi các lớp con có chung thuộc tính hoặc phương thức.

@@ -4,21 +4,60 @@
         padding: revert-layer;
         list-style-type: disc !important;
     }
-    & h1 {
-        font-size: 24px;
+    & h1.markdown-heading {
+        font-size: 38px !important;
+        color: transparent;
+        background-clip: text !important;
+        -webkit-background-clip: text !important;
+        background: linear-gradient(15deg, #fad648, #a767e5, #12bcfe, #44ce7b);
     }
     li {
         padding: 2px; /* Spacing for each list item */
-        border-bottom: 1px solid #eee; /* Light bottom border */
         transition: background-color 0.3s; /* Smooth background transition */
     }
 
-    & li:last-child {
-        border-bottom: none; /* Remove border from the last item */
+    & li:hover {
+        background-color: #f0f0f0a4; /* Highlight on hover */
     }
 
-    & li:hover {
-        background-color: #f0f0f0; /* Highlight on hover */
+    & table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 16px;
+        text-align: left;
+        border: 1px solid #ddd;
+        background-color: #fff;
+    }
+
+    /* Định dạng hàng tiêu đề */
+    & thead {
+        background: linear-gradient(to bottom, #cc88ff, #2f82ff);
+        color: white;
+        font-weight: bold;
+    }
+
+    & th,
+    td {
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    /* Định dạng từng hàng xen kẽ */
+    & tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* Hiệu ứng hover */
+    & tr:hover {
+        background-color: #ddd;
+        transition: 0.3s;
+    }
+
+    & img {
+        max-height: 25rem;
+        border-radius: 10px;
+        border: 1px solid #ddd;
     }
 
     & * {
