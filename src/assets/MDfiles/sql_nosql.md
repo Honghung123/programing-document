@@ -251,3 +251,187 @@ Sau khi tạo index, truy vấn chỉ quét phạm vi nhỏ → **tốc độ nh
 
 -   Index không phải "viên đạn bạc". Đôi khi cần tối ưu truy vấn hoặc thiết kế CSDL.
 -   Cân bằng giữa tốc độ đọc và ghi để đảm bảo hiệu suất tổng thể.
+
+# Query Optimization
+
+### **1. Sử Dụng Index Hiệu Quả**
+
+-   **Tạo Index trên các cột thường dùng trong `WHERE`, `JOIN`, `ORDER BY`**  
+    Ví dụ:
+    ```sql
+    CREATE INDEX idx_user_email ON Users(email); -- Tăng tốc tìm kiếm theo email
+    ```
+-   **Tránh Over-Indexing**  
+    Quá nhiều index làm chậm thao tác ghi (INSERT/UPDATE/DELETE).
+-   **Composite Index cho truy vấn nhiều cột**
+    ```sql
+    CREATE INDEX idx_name_age ON Employees(last_name, age); -- Tối ưu truy vấn WHERE last_name = 'Smith' AND age > 30
+    ```
+
+---
+
+### **2. Tối Ưu Cấu Trúc Truy Vấn**
+
+-   **Chỉ SELECT các cột cần thiết**
+
+    ```sql
+    -- Không tốt:
+    SELECT * FROM Orders;
+
+    -- Tốt hơn:
+    SELECT order_id, order_date, total FROM Orders;
+    ```
+
+-   **Thay Subquery bằng JOIN**
+
+    ```sql
+    -- Subquery chậm:
+    SELECT * FROM Products
+    WHERE category_id IN (SELECT category_id FROM Categories WHERE name = 'Electronics');
+
+    -- JOIN nhanh hơn:
+    SELECT p.*
+    FROM Products p
+    JOIN Categories c ON p.category_id = c.category_id
+    WHERE c.name = 'Electronics';
+    ```
+
+---
+
+### **3. Phân Tích Execution Plan**
+
+Sử dụng lệnh `EXPLAIN` (MySQL/PostgreSQL) hoặc `EXPLAIN PLAN` (Oracle) để xem cách CSDL xử lý truy vấn.  
+Ví dụ:
+
+```sql
+EXPLAIN SELECT * FROM Users WHERE email = 'user@example.com';
+```
+
+-   **Điều chỉnh dựa trên kết quả**: Thêm index hoặc viết lại truy vấn nếu phát hiện Full Table Scan.
+
+---
+
+### **4. Tối Ưu JOIN**
+
+-   **Đảm bảo cột JOIN có Index**
+    ```sql
+    CREATE INDEX idx_order_customer ON Orders(customer_id); -- Index cho JOIN Orders và Customers
+    ```
+-   **Thứ tự JOIN**: Ưu tiên bảng nhỏ trước.
+    ```sql
+    -- Ví dụ: Bảng Customers (10k records) JOIN Orders (1M records)
+    SELECT *
+    FROM Customers c
+    JOIN Orders o ON c.customer_id = o.customer_id; -- Hiệu quả hơn nếu Customers được lọc trước
+    ```
+
+---
+
+### **5. Phân Trang (Pagination) Thông Minh**
+
+-   **Tránh OFFSET lớn** (gây chậm):
+
+    ```sql
+    -- Truyền thống (chậm khi OFFSET lớn):
+    SELECT * FROM Orders ORDER BY order_date DESC LIMIT 10 OFFSET 10000;
+
+    -- Keyset Pagination (nhanh hơn):
+    SELECT * FROM Orders
+    WHERE order_date < '2023-01-01' -- Sử dụng giá trị cột thay vì OFFSET
+    ORDER BY order_date DESC
+    LIMIT 10;
+    ```
+
+---
+
+### **6. Tránh Hàm/Toán Tử Trên Cột Index**
+
+-   **Không tốt**:
+    ```sql
+    SELECT * FROM Users WHERE UPPER(name) = 'JOHN'; -- Index trên name không được sử dụng
+    ```
+-   **Tốt hơn**:
+    ```sql
+    SELECT * FROM Users WHERE name = 'John'; -- Sử dụng Index
+    ```
+
+---
+
+### **7. Batch Operations và Bulk Insert**
+
+-   **Gộp nhiều INSERT thành một lần**:
+
+    ```sql
+    -- Chậm:
+    INSERT INTO Logs (message) VALUES ('Error 1');
+    INSERT INTO Logs (message) VALUES ('Error 2');
+
+    -- Nhanh hơn:
+    INSERT INTO Logs (message)
+    VALUES ('Error 1'), ('Error 2'), ('Error 3');
+    ```
+
+---
+
+### **8. Tối Ưu Schema và Kiểu Dữ Liệu**
+
+-   **Chọn kiểu dữ liệu phù hợp**:
+
+    ```sql
+    -- Không tốt: Dùng VARCHAR cho số điện thoại
+    CREATE TABLE Contacts (phone VARCHAR(20));
+
+    -- Tốt hơn: Dùng INT/BIGINT nếu chỉ lưu số
+    CREATE TABLE Contacts (phone BIGINT);
+    ```
+
+-   **Denormalization khi cần**: Thêm cột dư thừa để tránh JOIN phức tạp.
+
+---
+
+### **9. Caching Kết Quả Truy Vấn**
+
+-   **Sử dụng Redis/Memcached**: Lưu kết quả truy vấn ít thay đổi (ví dụ: danh sách sản phẩm nổi bật).
+
+---
+
+### **10. Theo Dõi và Tinh Chỉnh Định Kỳ**
+
+-   **Phát hiện truy vấn chậm**: Sử dụng công cụ như `slow_query_log` (MySQL) hoặc `pg_stat_statements` (PostgreSQL).
+-   **Xóa Index không sử dụng**: Giảm overhead cho thao tác ghi.
+
+---
+
+### **Ví Dụ Tổng Hợp**
+
+**Truy vấn ban đầu (chậm)**:
+
+```sql
+SELECT *
+FROM Orders
+WHERE customer_id = 100
+ORDER BY order_date DESC;
+```
+
+**Tối ưu hóa**:
+
+1. Thêm Composite Index:
+    ```sql
+    CREATE INDEX idx_customer_order_date ON Orders(customer_id, order_date);
+    ```
+2. Giới hạn cột SELECT và sử dụng LIMIT:
+    ```sql
+    SELECT order_id, order_date, total
+    FROM Orders
+    WHERE customer_id = 100
+    ORDER BY order_date DESC
+    LIMIT 20;
+    ```
+
+---
+
+### **Lưu Ý Quan Trọng**
+
+-   **Cân bằng giữa đọc và ghi**: Index cải thiện tốc độ đọc nhưng làm chậm ghi.
+-   **Test hiệu suất**: Đo lường thời gian truy vấn trước/sau khi tối ưu.
+-   **Tránh tối ưu quá sớm**: Ưu tiên code dễ đọc trước, tối ưu khi phát hiện vấn đề thực tế.
