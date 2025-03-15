@@ -1,9 +1,9 @@
-name: Demo CI / CD with GitHub Actions # Name of the workflow, You can see this workflow name in the Actions tab of your repository
+name: Demo CI / CD with GitHub Actions in a sub-directory # Name of the workflow, You can see this workflow name in the Actions tab of your repository
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push] # This workflow will run on every push action to the repository
 jobs:
     Print-demo-messages: # This is the name of the job
-        name: Explore GitHub Actions # This is the name of the job that will be displayed in the Actions tab of your repository
+        name: Verify github can run multiple workflows # This is the name of the job that will be displayed in the Actions tab of your repository
         runs-on: ubuntu-latest
         steps:
             - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
