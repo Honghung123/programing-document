@@ -1,4 +1,4 @@
-name: Demo CI / CD with GitHub Actions in a sub-directory # Name of the workflow, You can see this workflow name in the Actions tab of your repository
+name: Test Github that can run multiple workflows # Name of the workflow, You can see this workflow name in the Actions tab of your repository
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push] # This workflow will run on every push action to the repository
 jobs:
