@@ -1,13 +1,13 @@
 import React from "react";
-import HomePage from "../pages/HomePage";
+import DevopsPage from "../pages/DevopsPage";
 import DocumentPage from "../pages/DocumentPage";
 
 export const routes = [
     // User routes
     {
-        path: "/home",
-        title: "Home",
-        element: <HomePage />,
+        path: "/devops",
+        title: "Devops",
+        element: <DevopsPage />,
         children: [],
     },
     {
