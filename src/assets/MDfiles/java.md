@@ -140,23 +140,33 @@
 
     **So sánh Abstract class với Interface**
 
-    -   `Abstract Class`: tập trung vào chia sẻ code và trạng thái chung.
-        -   Khi các lớp con có chung thuộc tính hoặc phương thức.
-        -   Cần tái sử dụng code hoặc định nghĩa trạng thái (biến instance).
-        -   Dễ dàng thay đổi, mở rộng mã nguồn mà không ảnh hưởng nhiều đến lớp con.
-        -   Khi có mối quan hệ kế thừa rõ ràng, các lớp triển khai thật sự là con của lớp cha - Quan hệ IS-A.
+    -   `Abstract Class`: phù hợp khi bạn có các lớp con có chung một số thuộc tính và phương thức, nhưng cần triển khai khác nhau ở một số phương thức cụ thể.
         -   Ví dụ:
-            -   Hệ thống quản lý động vật với lớp cơ sở Animal.
-            -   Hệ thống quản lý nhân viên.
+            -   Hệ thống quản lý động vật với lớp cơ sở Animal, Vehicle, Employee. 
     -   `Interface`: tập trung vào định nghĩa hành vi và tính linh hoạt.
-
-        -   Khi muốn các lớp triển khai phải có, nhưng không quan tâm triển khai như thế nào
-        -   Khi cần định nghĩa một hợp đồng các hành vi chung cho nhiều lớp không liên quan có thể sử dụng. Không nhất thiết có quan hệ kế thừa - Quan hệ CAN-DO.
+        -   Khi muốn các lớp triển khai phải có, nhưng không quan tâm triển khai như thế nào 
         -   Cần đa kế thừa.
         -   Ví dụ:
-            -   Hệ thống quản lý Phương tiện giao thông
+            -   Hệ thống payment(processPayment, calculateInterest,...)
 
         => Sử dụng kết hợp cả hai để tận dụng tối đa sức mạnh của OOP trong Java.
+
+### Rủi ro khi sử dụng Downcasting
+
+-   **Downcasting** là quá trình ép kiểu từ một lớp cha sang lớp con.
+-   **Rủi ro**:
+    -   **ClassCastException**: Nếu ép kiểu không chính xác, sẽ ném ra lỗi runtime. 
+        -   Ví dụ:
+            ```java
+            Animal animal = new Cat();
+            Dog dog = (Dog) animal; // Ép kiểu không chính xác
+            ```
+            Cách khắc phục:
+            ```java
+            if (animal instanceof Dog) {
+                Dog dog = (Dog) animal;
+            }
+            ```
 
 ### **5. Các tính chất khác liên quan**
 

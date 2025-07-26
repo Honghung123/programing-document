@@ -1,4 +1,9 @@
 .document-content {
+    a {
+        &::after {
+            content: "🔗";
+        }
+    }
     & ul,
     ol {
         padding: revert-layer;

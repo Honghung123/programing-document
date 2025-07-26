@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-
-export default function TagList({ fileList, handleClick }) {
+export default function TagList({ fileList, handleClick }: { fileList: any[]; handleClick: (file: any) => void }) {
     return (
         <ul className="flex flex-wrap gap-2 sm:gap-4 justify-center items-center">
             {fileList.map((file) => (

@@ -4,6 +4,9 @@
 
 > `Continuous Integration (CI)` refers to the practice of automatically and frequently integrating code changes into a shared source code repository.
 
+-   When you commit code to your repository, you can continuously **build** and **test** the code to make sure that the commit doesn't introduce errors. Your tests can include **code linters** (which check style formatting), **security checks**, **code coverage**, **functional tests**, and other custom checks.
+-   Building and testing your code **requires a server**. You can build and test updates **locally** before pushing code to a repository, or you can **use a CI server** that checks for new code commits in a repository.
+
 > `Continous Delivery/Deployment` là một quy trình gồm 2 phần đề cập đến việc tích hợp, kiểm thử và phân phối các thay đổi mã. `Continous Delivery` dừng lại trước khi deploy automatically in production, while `Continous deployment` automatically releases the updates into the production environment.
 
 > The main idea is to automate the process of integrating code changes, testing them, and deploying them to production.

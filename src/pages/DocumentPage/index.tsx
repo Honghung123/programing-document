@@ -6,7 +6,7 @@ import { documentFiles } from "./documentFiles";
 import HeadToTop from "../../components/HeadToTop";
 import Navbar from "../../components/Navbar";
 
-const resolveFile = (currentDocName, files) => {
+const resolveFile = (currentDocName: string, files: any[]) => {
     let targetFile = null;
     if (currentDocName && currentDocName.length > 0) {
         targetFile = files.find((file) => file.name === currentDocName);
@@ -21,14 +21,14 @@ const resolveFile = (currentDocName, files) => {
 
 export default function DocumentPage() {
     const [searchParams] = useSearchParams();
-    const currentDocFile = resolveFile(searchParams.get("doc"), documentFiles);
+    const currentDocFile = resolveFile(searchParams.get("doc")!, documentFiles);
     const [docFile, setDocFile] = useState(currentDocFile);
     const [fileContent, setFileContent] = useState("");
     useEffect(() => {
         setFileContent(docFile.content);
     }, [docFile]);
 
-    const handleClick = (file) => {
+    const handleClick = (file: any) => {
         localStorage.setItem("docName", file.name);
         setDocFile({ ...file });
     };
@@ -48,7 +48,7 @@ export default function DocumentPage() {
                     <div dangerouslySetInnerHTML={{ __html: fileContent }} />
                 </div>
             </div>
-            <HeadToTop className="fixed bottom-4 right-4 border rounded-full border w-10 h-10 bg-gray-500 flex justify-center items-center bg-opacity-30 cursor-pointer hover:bg-opacity-100">
+            <HeadToTop className="fixed bottom-4 right-4 border rounded-full w-10 h-10 bg-gray-500 flex justify-center items-center bg-opacity-30 cursor-pointer hover:bg-opacity-100">
                 <div className="text-white">Top</div>
             </HeadToTop>
         </div>

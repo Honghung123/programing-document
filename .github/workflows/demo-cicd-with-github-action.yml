@@ -2,7 +2,7 @@ name: Demo CI / CD with GitHub Actions # Name of the workflow, You can see this 
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push] # This workflow will run on every push action to the repository
 jobs:
-    Print-demo-messages: # This is the name of the job
+    Print-demo-messages: # This is the id of the job
         name: Explore GitHub Actions # This is the name of the job that will be displayed in the Actions tab of your repository
         runs-on: ubuntu-latest
         steps:
@@ -17,3 +17,20 @@ jobs:
               run: |
                   ls ${{ github.workspace }}
             - run: echo "🍏 This job's status is ${{ job.status }}."
+    final-job:
+        name: Final job
+        runs-on: ubuntu-latest
+        # This job will run after the prequisite job is completed regardless of success or failure
+        if: ${{ always() }}
+        needs: [Print-demo-messages] # The prerequisite job ids
+        steps:
+            - name: List files in the repository
+              run: |
+                  ls ${{ github.workspace }}
+            - run: echo "🍏 This job's status is ${{ job.status }}."
+            - name: Use the repository action
+              uses: actions/checkout@v4
+            - name: Use the local action
+              uses: ./github/actions/build-artifact-action
+            - name: Referencing a container on Docker Hub
+              uses: docker://alpine:latest # reference the action with the docker://{image}:{tag} format

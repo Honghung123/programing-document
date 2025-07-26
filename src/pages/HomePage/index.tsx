@@ -41,8 +41,7 @@ export default function HomePage() {
                         height="617"
                         className={"object-cover"}
                         alt="Hero Illustration"
-                        loading="eager"
-                        placeholder="blur"
+                        loading="eager" 
                     />
                 </div>
             </div>

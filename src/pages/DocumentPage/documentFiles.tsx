@@ -1,17 +1,17 @@
-import { beautifulHTMLFromMDFile } from "../../utils/StringUtility";
-// MD files
-import javascriptMD from "../../assets/MDfiles/javascript.md";
-import typescriptMD from "../../assets/MDfiles/typescript.md";
-import csharpMD from "../../assets/MDfiles/c_sharp.md";
-import javaMD from "../../assets/MDfiles/java.md";
-import architectureMD from "../../assets/MDfiles/architecture.md";
-import designPatternsMD from "../../assets/MDfiles/design_patterns.md";
-import sqlNoSqlMD from "../../assets/MDfiles/sql_nosql.md";
-import message_queueMD from "../../assets/MDfiles/message_queue.md";
-import dsaMD from "../../assets/MDfiles/algorithm.md";
-import resolveDsaMD from "../../assets/MDfiles/common_dsa_resolve.md";
-import javaCollectionMD from "../../assets/MDfiles/java_collection.md";
-import javaFeatureMD from "../../assets/MDfiles/java_feature.md";
+import { beautifulHTMLFromMDFile } from "./../../utils/StringUtility";
+// MD files 
+import dsaMD from "@/assets/MDfiles/algorithm.md";
+import architectureMD from "@/assets/MDfiles/architecture.md";
+import csharpMD from "@/assets/MDfiles/c_sharp.md";
+import resolveDsaMD from "@/assets/MDfiles/common_dsa_resolve.md";
+import designPatternsMD from "@/assets/MDfiles/design_patterns.md";
+import javaMD from "@/assets/MDfiles/java.md";
+import javaCollectionMD from "@/assets/MDfiles/java_collection.md";
+import javaFeatureMD from "@/assets/MDfiles/java_feature.md";
+import javascriptMD from "@/assets/MDfiles/javascript.md";
+import message_queueMD from "@/assets/MDfiles/message_queue.md";
+import sqlNoSqlMD from "@/assets/MDfiles/sql_nosql.md";
+import typescriptMD from "@/assets/MDfiles/typescript.md";
 
 export const documentFiles = [
     {
