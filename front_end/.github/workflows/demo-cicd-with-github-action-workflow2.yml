@@ -1,0 +1,19 @@
+name: Test Github that can run multiple workflows # Name of the workflow, You can see this workflow name in the Actions tab of your repository
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push] # This workflow will run on every push action to the repository
+jobs:
+    Print-demo-messages: # This is the name of the job
+        name: Verify github can run multiple workflows # This is the name of the job that will be displayed in the Actions tab of your repository
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+            - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+            - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+            - name: Check out repository code
+              uses: actions/checkout@v4
+            - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+            - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+            - name: List files in the repository
+              run: |
+                  ls ${{ github.workspace }}
+            - run: echo "🍏 This job's status is ${{ job.status }}."

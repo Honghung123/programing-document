@@ -1,0 +1,215 @@
+.document-content {
+    & ul,
+    ol {
+        padding: revert-layer;
+        list-style-type: disc !important;
+    }
+    & h1.markdown-heading {
+        font-size: 38px !important;
+        color: transparent;
+        background-clip: text !important;
+        -webkit-background-clip: text !important;
+        background: linear-gradient(15deg, #fad648, #a767e5, #12bcfe, #44ce7b);
+    }
+    & h2.heading-element code {
+        color: transparent;
+        background-clip: text !important;
+        -webkit-background-clip: text !important;
+        background: linear-gradient(115deg, #ad25fc, #2ab1ff, #ff33a6, #cdfc41);
+    }
+    & li {
+        padding: 2px; /* Spacing for each list item */
+        transition: background-color 0.3s; /* Smooth background transition */
+        & code {
+            color: transparent;
+            background-clip: text !important;
+            -webkit-background-clip: text !important;
+            background: linear-gradient(115deg, #fc3b25, #ff8a2a, #ff338b, #fc418c);
+        }
+    }
+
+    & li:hover {
+        background-color: #f0f0f0a4; /* Highlight on hover */
+    }
+
+    & blockquote {
+        background: #f9f9f9;
+        border-left: 10px solid #ae2efe;
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+    }
+    & blockquote:before {
+        color: #73fd1d;
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.5rem;
+        vertical-align: -0.4em;
+    }
+    & blockquote p {
+        display: inline;
+    }
+
+    & table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 16px;
+        text-align: left;
+        border: 1px solid #ddd;
+        background-color: #fff;
+    }
+
+    /* Định dạng hàng tiêu đề */
+    & thead {
+        background: linear-gradient(to bottom, #cc88ff, #2f82ff);
+        color: white;
+        font-weight: bold;
+    }
+
+    & th,
+    td {
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    /* Định dạng từng hàng xen kẽ */
+    & tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* Hiệu ứng hover */
+    & tr:hover {
+        background-color: #ddd;
+        transition: 0.3s;
+    }
+
+    & img {
+        max-height: 25rem;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+    }
+
+    & * {
+        cursor: pointer;
+    }
+
+    & pre {
+        background-color: #050505; /* Dark background for contrast */
+        color: #ffffff; /* Light text color */
+        padding: 20px; /* Spacing around the text */
+        border-radius: 8px; /* Rounded corners */
+        overflow: auto; /* Scroll if content overflows */
+        font-family: "Fira Code", monospace; /* Monospace font for code */
+        font-size: 14px; /* Font size */
+        line-height: 1.5; /* Improved line height for readability */
+    }
+
+    & code {
+        background: none; /* Remove background from inline code */
+        padding: 0; /* No padding for inline code */
+    }
+
+    & .hljs-keyword {
+        background-image: linear-gradient(to bottom, #fcf9bd, #ff2f78);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text; /* CSS for keywords */
+    }
+
+    & .hljs-attr {
+        color: #e06c75; /* Red for attributes */
+    }
+
+    & .hljs-property {
+        background-image: linear-gradient(to bottom, #fcf9bd, #2ffffc);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text; /* CSS for properties */
+    }
+
+    & .hljs-literal {
+        background-image: linear-gradient(to bottom, #fcffdf, #a2ff00);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+
+    & .hljs-number {
+        background-image: linear-gradient(to bottom, #ecff17, #ffaf1b);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+
+    & .hljs-string {
+        background-image: linear-gradient(to bottom, #ffff04, #ff2bea);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        /* Green for strings */
+    }
+
+    & .hljs-comment {
+        color: #96ff69e8; /* Grey for comments */
+        font-style: italic; /* Italics for comments */
+    }
+
+    & .hljs-title.function_ {
+        color: transparent;
+        background-image: linear-gradient(to bottom, #efc5ff, #01fff2);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+    }
+
+    & .hljs-title.class_ {
+        color: transparent;
+        background-image: linear-gradient(to bottom, #efc5ff, #ffe101);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+    }
+}
+
+.markdown-heading,
+.heading-element {
+    padding: 10px 0;
+    font-size: 30px !important;
+    font-weight: 500;
+    /* Text gradient from violet to lime */
+    background: -webkit-linear-gradient(90deg, #14fcaf, #8819ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hljs {
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Responsive */
+
+@media only screen and (max-width: 1200px) {
+    .document-content pre {
+        zoom: 0.95;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .document-content pre {
+        zoom: 0.85;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .document-content pre {
+        zoom: 0.8;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .document-content pre {
+        zoom: 0.75;
+    }
+}

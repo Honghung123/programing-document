@@ -1,8 +1,0 @@
-/* @import "tailwindcss"; */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.text-gradient {
-    @apply bg-gradient-to-r from-rose-500 to-violet-500 bg-clip-text text-transparent;
-}
